@@ -8,16 +8,15 @@ android:background="@color/backgroundPage"
 tools:context="dev.edmt.flagsquizapp.MainActivity">
 
 
-<ImageView
-    android:id="@+id/flags"
-    android:layout_width="300dp"
-    android:layout_height="200dp"
-    android:layout_alignParentTop="true"
-    android:layout_centerHorizontal="true"
-    android:layout_marginTop="25dp"
-    android:background="@drawable/united_states_of_america"
-    android:gravity="center"
-    />
+    <ImageView
+        android:id="@+id/flags"
+        android:layout_width="320dp"
+        android:layout_height="180dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/map_transparent"
+        android:gravity="center" />
 
 <RelativeLayout
     android:layout_below="@+id/flags"
@@ -40,20 +39,20 @@ tools:context="dev.edmt.flagsquizapp.MainActivity">
         <Button
             android:id="@+id/btnPlay"
             style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:background="#AD1457"
+            android:background="#217DAE"
             android:foreground="?android:attr/selectableItemBackground"
             android:text="PLAY"
             android:textColor="#FFFFFF"
             android:textStyle="bold"
-            android:theme="@style/MyButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:theme="@style/MyButton" />
         <Button
             android:id="@+id/btnScore"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_margin="8dp"
-            android:background="#FF8A80"
+            android:background="#52B0C0"
             android:foreground="?android:attr/selectableItemBackground"
             android:text="SCORE"
             android:textColor="#FFFFFF"
@@ -73,9 +72,9 @@ tools:context="dev.edmt.flagsquizapp.MainActivity">
 
         <SeekBar
             android:id="@+id/seekBar"
-            android:max="3"
             android:layout_width="285dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:max="3" />
         <TextView
             android:id="@+id/txtMode"
             android:layout_gravity="center"

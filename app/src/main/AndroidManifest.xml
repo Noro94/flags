@@ -15,8 +15,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Playing" />
+        <activity android:name=".PlayingClassic" />
         <activity android:name=".Done" />
+        <activity android:name=".ModeOption" />
         <activity android:name=".Score"></activity>
     </application>
 

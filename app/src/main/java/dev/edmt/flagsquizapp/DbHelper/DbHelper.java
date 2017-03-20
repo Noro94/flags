@@ -129,7 +129,7 @@ public class DbHelper extends SQLiteOpenHelper {
         return listQuestion;
     }
 
-    //We need improve this function to optimize process from Playing
+    //We need improve this function to optimize process from PlayingClassic
     public List<Question> getQuestionMode(String mode) {
         List<Question> listQuestion = new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();

@@ -39,9 +39,6 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
-
-
         //Event
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -69,8 +66,8 @@ public class MainActivity extends AppCompatActivity {
         btnPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),Playing.class);
-                intent.putExtra("MODE",getPlayMode()); // Send Mode to Playing page
+                Intent intent = new Intent(getApplicationContext(),ModeOption.class);
+                intent.putExtra("MODE",getPlayMode()); // Send Mode to ModeOption page
                 startActivity(intent);
                 finish();
             }
