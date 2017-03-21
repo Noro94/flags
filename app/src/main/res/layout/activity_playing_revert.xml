@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundPage"
-    tools:context="dev.edmt.flagsquizapp.PlayingClassic">
+    tools:context="dev.edmt.flagsquizapp.PlayingRevert">
 
-    <ImageView
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/question_country"
         android:layout_width="320dp"
         android:layout_height="180dp"
@@ -15,146 +15,182 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
         android:background="@drawable/map_transparent_black_white"
-        android:gravity="center" />
-
-    <RelativeLayout
-        android:layout_below="@+id/question_country"
-
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:background="@drawable/round_corner"
-        android:elevation="4dp"
-        android:paddingTop="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:gravity="center">
 
         <LinearLayout
-            android:orientation="vertical"
-            android:id="@+id/btnGroup"
-            android:paddingTop="5dp"
-            android:paddingBottom="10dp"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/country_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Country"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="36sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/question_country"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/round_corner"
+        android:elevation="4dp"
+        android:paddingTop="20dp">
+
+        <LinearLayout
+            android:id="@+id/btnGroup"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="10dp"
+            android:paddingTop="5dp">
 
             <LinearLayout
-                android:weightSum="2"
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
 
                 <TextView
                     android:id="@+id/txtScore"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/button_border"
                     android:gravity="center"
                     android:text="0"
-                    android:textSize="36sp"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
+                    android:textSize="36sp" />
 
                 <TextView
                     android:id="@+id/txtQuestion"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="1/30"
-                    android:textSize="36sp"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
+                    android:textSize="36sp" />
 
             </LinearLayout>
 
             <ProgressBar
                 android:id="@+id/progressBar"
                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:indeterminate="false"
                 android:max="200"
-                android:progress="1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:progress="1" />
 
 
             <LinearLayout
-                android:weightSum="2"
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
 
-                <Button
-                    android:id="@+id/btnAnswerA"
-                    style="@style/Widget.AppCompat.Button.Borderless"
+                <LinearLayout
+                    android:id="@+id/flagLayoutA"
                     android:layout_width="fill_parent"
-                    android:layout_height="70dp"
-                    android:layout_margin="10dp"
+                    android:layout_height="95dp"
+                    android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/united_kingdom"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:gravity="center"
-                    android:textColor="#FFFFFF"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:theme="@style/MyButton" />
+                    android:background="#ffffff">
 
-                <Button
-                    android:id="@+id/btnAnswerB"
-                    style="@style/Widget.AppCompat.Button.Borderless"
+                    <Button
+                        android:id="@+id/flagAnswerA"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/united_kingdom"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:gravity="center"
+                        android:theme="@style/MyButton" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/flagLayoutB"
                     android:layout_width="fill_parent"
-                    android:layout_height="70dp"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/united_states_of_america"
+                    android:layout_height="95dp"
+                    android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:textColor="#FFFFFF"
-                    android:textStyle="bold"
-                    android:theme="@style/MyButton"
-                    />
+                    android:background="#ffffff">
+
+                    <Button
+                        android:id="@+id/flagAnswerB"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/united_states_of_america"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:gravity="center"
+                        android:theme="@style/MyButton" />
+                </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
-                android:weightSum="2"
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
 
-                <Button
-                    android:id="@+id/btnAnswerC"
-                    style="@style/Widget.AppCompat.Button.Borderless"
+                <LinearLayout
+                    android:id="@+id/flagLayoutC"
                     android:layout_width="fill_parent"
-                    android:layout_height="70dp"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/germany"
+                    android:layout_height="95dp"
+                    android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:textColor="#FFFFFF"
-                    android:textStyle="bold"
-                    android:theme="@style/MyButton"
-                    />
+                    android:background="#ffffff">
 
-                <Button
-                    android:id="@+id/btnAnswerD"
-                    style="@style/Widget.AppCompat.Button.Borderless"
+                    <Button
+                        android:id="@+id/flagAnswerC"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/japan"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:gravity="center"
+                        android:theme="@style/MyButton" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/flagLayoutD"
                     android:layout_width="fill_parent"
-                    android:layout_height="70dp"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/georgia"
+                    android:layout_height="95dp"
+                    android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:textColor="#FFFFFF"
-                    android:textStyle="bold"
-                    android:theme="@style/MyButton"
-                    />
+                    android:background="#ffffff">
 
+                    <Button
+                        android:id="@+id/flagAnswerD"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/georgia"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:gravity="center"
+                        android:theme="@style/MyButton" />
+                </LinearLayout>
 
             </LinearLayout>
-
-
-
 
         </LinearLayout>
 

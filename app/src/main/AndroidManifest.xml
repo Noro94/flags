@@ -16,6 +16,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".PlayingClassic" />
+        <activity android:name=".PlayingRevert" />
         <activity android:name=".Done" />
         <activity android:name=".ModeOption" />
         <activity android:name=".Score"></activity>

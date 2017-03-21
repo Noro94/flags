@@ -7,4 +7,5 @@
     <color name="colorWrong">#fc2024</color>
     <color name="colorRight">#1cd400</color>
     <color name="colorButtonDefault">#217DAE</color>
+    <color name="colorBackgroundDefault">#ffffff</color>
 </resources>
