@@ -9,7 +9,6 @@ import android.widget.Button;
 public class ModeOption extends AppCompatActivity {
     Button btnPlayClassicMode;
     Button btnPlayRevertMode;
-    String mode = "";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -19,18 +18,10 @@ public class ModeOption extends AppCompatActivity {
         btnPlayClassicMode = (Button) findViewById(R.id.btnPlayClassicMode);
         btnPlayRevertMode = (Button) findViewById(R.id.btnPlayRevertMode);
 
-        //Get Data from MainActivity
-        Bundle extra = getIntent().getExtras();
-        if (extra != null) {
-            mode = extra.getString("MODE");
-        }
-
-
         btnPlayClassicMode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), PlayingClassic.class);
-                intent.putExtra("MODE", mode); // Send Mode to PlayingClassic page
                 startActivity(intent);
                 finish();
             }
@@ -40,10 +31,16 @@ public class ModeOption extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), PlayingRevert.class);
-                intent.putExtra("MODE", mode); // Send Mode to PlayingClassic page
                 startActivity(intent);
                 finish();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

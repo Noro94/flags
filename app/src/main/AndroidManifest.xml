@@ -19,6 +19,7 @@
         <activity android:name=".PlayingRevert" />
         <activity android:name=".Done" />
         <activity android:name=".ModeOption" />
+        <activity android:name=".Configurations" />
         <activity android:name=".Score"></activity>
     </application>
 

@@ -12,15 +12,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import dev.edmt.flagsquizapp.Common.Common;
 import dev.edmt.flagsquizapp.Model.Question;
 import dev.edmt.flagsquizapp.Model.Ranking;
 
+import static dev.edmt.flagsquizapp.Utils.Utils.getCountByMode;
+
 public class DbHelper extends SQLiteOpenHelper {
 
-    private static String DB_NAME = "MyDB.db";
+    private static String DB_NAME = "MyLDB.db";
     private static String DB_PATH = "";
     private SQLiteDatabase mDataBase;
     private Context mContext = null;
@@ -29,7 +32,7 @@ public class DbHelper extends SQLiteOpenHelper {
         super(context, DB_NAME, null, 1);
 
         DB_PATH = context.getApplicationInfo().dataDir + "/databases/";
-        File file = new File(DB_PATH+"MyDB.db");
+        File file = new File(DB_PATH+"MyLDB.db");
         if(file.exists())
             openDataBase(); // Add this line to fix db.insert can't insert values
         this.mContext = context;
@@ -129,20 +132,54 @@ public class DbHelper extends SQLiteOpenHelper {
         return listQuestion;
     }
 
+    public Map<String, String> getConfigs() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Map<String, String> configs = new HashMap<>();
+        Cursor c;
+        try {
+            c = db.rawQuery("SELECT * FROM Settings", null);
+            if (c == null) return null;
+            c.moveToFirst();
+            configs.put("CountMode", c.getString(c.getColumnIndex("CountMode")));
+            configs.put("SpeedMode", c.getString(c.getColumnIndex("SpeedMode")));
+            configs.put("PlayMode", c.getString(c.getColumnIndex("PlayMode")));
+            configs.put("SoundMode", c.getString(c.getColumnIndex("SoundMode")));
+
+            c.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return configs;
+    }
+
+    public void setCountConfig(String count) {
+        String query = "UPDATE Settings SET CountMode = \""+count+"\";";
+        mDataBase.execSQL(query);
+    }
+
+    public void setSpeedConfig(String speed) {
+        String query = "UPDATE Settings SET SpeedMode = \""+speed+"\";";
+        mDataBase.execSQL(query);
+    }
+
+    public void setPlayConfig(String play) {
+        String query = "UPDATE Settings SET PlayMode = \""+play+"\";";
+        mDataBase.execSQL(query);
+    }
+
+    public void setSoundConfig(String sound) {
+        String query = "UPDATE Settings SET SoundMode = \""+sound+"\";";
+        mDataBase.execSQL(query);
+    }
+
     //We need improve this function to optimize process from PlayingClassic
     public List<Question> getQuestionMode(String mode) {
         List<Question> listQuestion = new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor c;
         int limit = 0;
-        if (mode.equals(Common.MODE.EASY.toString()))
-            limit = 30;
-        else if (mode.equals(Common.MODE.MEDIUM.toString()))
-            limit = 50;
-        else if (mode.equals(Common.MODE.HARD.toString()))
-            limit = 100;
-        else if (mode.equals(Common.MODE.HARDEST.toString()))
-            limit = 200;
+        limit = getCountByMode(mode);
         try {
             c = db.rawQuery(String.format("SELECT * FROM Question ORDER BY Random() LIMIT %d", limit), null);
             if (c == null) return null;

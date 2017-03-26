@@ -13,6 +13,8 @@ import java.util.Map;
 import dev.edmt.flagsquizapp.DbHelper.DbHelper;
 import dev.edmt.flagsquizapp.Model.Question;
 
+import static dev.edmt.flagsquizapp.constants.Constants.ACTIVE_CLASSIC;
+
 public class PlayingClassic extends PlayCommon implements View.OnClickListener {
 
     //Control
@@ -24,12 +26,12 @@ public class PlayingClassic extends PlayCommon implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playing);
 
-        Bundle extra = getIntent().getExtras();
-        if (extra != null) {
-            mode = extra.getString("MODE");
-        }
-
         db = new DbHelper(this);
+        configs = db.getConfigs();
+        mode = configs.get("CountMode");
+        speed = configs.get("SpeedMode");
+
+        setTimeoutAndInterval(speed);
 
         txtScore = (TextView) findViewById(R.id.txtScore);
         txtQuestion = (TextView) findViewById(R.id.txtQuestion);
@@ -67,6 +69,7 @@ public class PlayingClassic extends PlayCommon implements View.OnClickListener {
 
             mCountDown.start();
         } else {
+            activeClassName = ACTIVE_CLASSIC;
             finishQuiz();
         }
     }

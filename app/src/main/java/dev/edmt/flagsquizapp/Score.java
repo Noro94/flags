@@ -1,5 +1,6 @@
 package dev.edmt.flagsquizapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
@@ -26,5 +27,12 @@ public class Score extends AppCompatActivity {
             CustomAdapter adapter = new CustomAdapter(this,lstRanking);
             lstView.setAdapter(adapter);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

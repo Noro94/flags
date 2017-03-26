@@ -29,20 +29,23 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 
-           <TextView
-               android:id="@+id/txtTotalScore"
-               android:layout_gravity="center"
-               android:text="Score : 0"
-               android:textSize="30sp"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/txtTotalScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Score : 0"
+                android:textColor="#217DAE"
+                android:textSize="24sp" />
+
             <TextView
                 android:id="@+id/txtTotalQuestion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Passed : 0/30"
-                android:textSize="30sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:textColor="#217DAE"
+                android:textSize="24sp" />
 
             <ProgressBar
                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"
@@ -57,9 +60,22 @@
                 android:id="@+id/btnTryAgain"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_margin="8dp"
-                android:background="#FF8A80"
+                android:background="#217DAE"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:text="TRY AGAIN"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:theme="@style/MyButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/btnMainMenu"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_margin="8dp"
+                android:background="#217DAE"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:text="MAIN MENU"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold"
                 android:theme="@style/MyButton"

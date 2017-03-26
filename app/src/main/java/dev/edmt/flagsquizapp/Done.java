@@ -8,13 +8,17 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import static dev.edmt.flagsquizapp.constants.Constants.*;
+import static dev.edmt.flagsquizapp.Utils.Utils.getActiveClass;
+
 import dev.edmt.flagsquizapp.DbHelper.DbHelper;
 
 public class Done extends AppCompatActivity {
 
-    Button btnTryAgain;
+    Button btnTryAgain, btnMainMenu;
     TextView txtResultScore, txtResultQuestion;
     ProgressBar progressBarResult;
+    String previousActivity = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,43 +32,36 @@ public class Done extends AppCompatActivity {
         txtResultQuestion = (TextView) findViewById(R.id.txtTotalQuestion);
         progressBarResult = (ProgressBar) findViewById(R.id.doneProgressBar);
         btnTryAgain = (Button) findViewById(R.id.btnTryAgain);
-        btnTryAgain.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
+        btnMainMenu = (Button) findViewById(R.id.btnMainMenu);
 
         Bundle extra = getIntent().getExtras();
         if (extra != null) {
             int score = extra.getInt("SCORE");
             int totalQuestion = extra.getInt("TOTAL");
             int correctAnswer = extra.getInt("CORRECT");
+            previousActivity = extra.getString("ACTIVE");
 
             //Update 2.0
             int playCount = 0;
-            if(totalQuestion == 30) // EASY MODE
+            if(totalQuestion == EASY_MODE_NUM) // EASY MODE
             {
                 playCount = db.getPlayCount(0);
                 playCount++;
                 db.updatePlayCount(0,playCount); // Set PlayCount ++
             }
-            else if(totalQuestion == 50) // MEDIUM MODE
+            else if(totalQuestion == MEDIUM_MODE_NUM) // MEDIUM MODE
             {
                 playCount = db.getPlayCount(1);
                 playCount++;
                 db.updatePlayCount(1,playCount); // Set PlayCount ++
             }
-            else if(totalQuestion == 100) // HARD MODE
+            else if(totalQuestion == HARD_MODE_NUM) // HARD MODE
             {
                 playCount = db.getPlayCount(2);
                 playCount++;
                 db.updatePlayCount(2,playCount); // Set PlayCount ++
             }
-            else if(totalQuestion == 200) // HARDEST MODE
+            else if(totalQuestion == HARDEST_MODE_NUM) // HARDEST MODE
             {
                 playCount = db.getPlayCount(3);
                 playCount++;
@@ -83,5 +80,30 @@ public class Done extends AppCompatActivity {
             //save score
             db.insertScore(finalScore);
         }
+
+        btnTryAgain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), getActiveClass(previousActivity));
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        btnMainMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(getApplicationContext(), ModeOption.class);
+        startActivity(intent);
+        finish();
     }
 }
