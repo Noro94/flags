@@ -264,4 +264,9 @@ public class DbHelper extends SQLiteOpenHelper {
         String query = String.format("UPDATE UserPlayCount Set PlayCount = %d WHERE Level = %d",playCount,level);
         mDataBase.execSQL(query);
     }
+
+    public void clearTable(String tableName) {
+        String query = String.format("DELETE FROM %s", tableName);
+        mDataBase.execSQL(query);
+    }
 }

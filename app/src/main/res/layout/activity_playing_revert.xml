@@ -109,7 +109,7 @@
                     android:layout_height="95dp"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:background="#ffffff">
+                    android:background="@color/colorBackgroundDefault">
 
                     <Button
                         android:id="@+id/flagAnswerA"
@@ -129,7 +129,7 @@
                     android:layout_height="95dp"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:background="#ffffff">
+                    android:background="@color/colorBackgroundDefault">
 
                     <Button
                         android:id="@+id/flagAnswerB"
@@ -157,7 +157,7 @@
                     android:layout_height="95dp"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:background="#ffffff">
+                    android:background="@color/colorBackgroundDefault">
 
                     <Button
                         android:id="@+id/flagAnswerC"
@@ -177,7 +177,7 @@
                     android:layout_height="95dp"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:background="#ffffff">
+                    android:background="@color/colorBackgroundDefault">
 
                     <Button
                         android:id="@+id/flagAnswerD"

@@ -29,7 +29,8 @@ import static dev.edmt.flagsquizapp.constants.Constants.ACTIVE_REVERT;
 public abstract class PlayCommon extends AppCompatActivity {
     protected Handler mHandler = new Handler();
 
-    final long DELAY_AFTER_ANSWER = 500; // 500 milli second
+    final long DELAY_AFTER_ANSWER = 1000; // 1 second
+    final long DELAY_NO_ANSWER = 2000; // 2 second
     long interval = 50; // 50 milli second
     long timeout = 10000; // 10 seconds
     int progressValue = 0;
@@ -48,6 +49,7 @@ public abstract class PlayCommon extends AppCompatActivity {
     ProgressBar progressBar;
     TextView txtScore, txtQuestion;
     Button rightAnswerReference;
+    View rightAnswerLayout;
 
     @Override
     protected void onResume() {
@@ -68,7 +70,14 @@ public abstract class PlayCommon extends AppCompatActivity {
                 mCountDown.cancel();
                 if (!finishQuizCycle) {
                     playSoundTimeout(getApplicationContext());
-                    showQuestion(++index);
+                    showCorrectAnswer(rightAnswerLayout);
+                    mHandler.postDelayed(new Runnable() {
+                        public void run() {
+                            manipulateButtons(getButtonsList(), true);
+                            setDefaultColor(rightAnswerLayout, buttonDefaultColor);
+                            showQuestion(++index);
+                        }
+                    }, DELAY_NO_ANSWER);
                 } else {
                     finish();
                 }
@@ -103,6 +112,7 @@ public abstract class PlayCommon extends AppCompatActivity {
 
         mHandler.postDelayed(new Runnable() {
             public void run() {
+                manipulateButtons(getButtonsList(), true);
                 setDefaultColor(answer, buttonDefaultColor);
                 showQuestion(++index);
             }
@@ -117,6 +127,7 @@ public abstract class PlayCommon extends AppCompatActivity {
 
         mHandler.postDelayed(new Runnable() {
             public void run() {
+                manipulateButtons(getButtonsList(), true);
                 setDefaultColor(answers, buttonDefaultColor);
                 showQuestion(++index);
             }
@@ -147,4 +158,6 @@ public abstract class PlayCommon extends AppCompatActivity {
     }
 
     protected abstract void showQuestion(int index);
+
+    protected abstract List<Button> getButtonsList();
 }

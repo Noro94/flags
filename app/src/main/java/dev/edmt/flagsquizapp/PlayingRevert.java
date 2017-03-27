@@ -7,12 +7,15 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import dev.edmt.flagsquizapp.DbHelper.DbHelper;
 import dev.edmt.flagsquizapp.Model.Question;
 
+import static dev.edmt.flagsquizapp.Utils.Utils.manipulateButtons;
 import static dev.edmt.flagsquizapp.constants.Constants.ACTIVE_REVERT;
 
 public class PlayingRevert extends PlayCommon implements View.OnClickListener {
@@ -22,6 +25,7 @@ public class PlayingRevert extends PlayCommon implements View.OnClickListener {
     Button flagA, flagB, flagC, flagD;
     String flagNameA, flagNameB, flagNameC, flagNameD;
     LinearLayout clickedFlagLayout, rightAnswerFlagLayout;
+    List<Button> buttonList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +53,8 @@ public class PlayingRevert extends PlayCommon implements View.OnClickListener {
         flagC.setOnClickListener(this);
         flagD.setOnClickListener(this);
 
+        buttonList = Arrays.asList(flagA, flagB, flagC, flagD);
+
         buttonDefaultColor = R.color.colorBackgroundDefault;
     }
 
@@ -73,6 +79,7 @@ public class PlayingRevert extends PlayCommon implements View.OnClickListener {
             flagD.setBackgroundResource(this.getResources().getIdentifier(flagNameD.toLowerCase(), "drawable", getPackageName()));
 
             setRightAnswerButtonReference(questionPlay.get(index));
+            rightAnswerLayout = rightAnswerFlagLayout;
 
             mCountDown.start();
         } else {
@@ -86,7 +93,7 @@ public class PlayingRevert extends PlayCommon implements View.OnClickListener {
         mCountDown.cancel();
         if (index < totalQuestion) {
             final Button clickedButton = (Button) v;
-
+            manipulateButtons(buttonList, false);
             if (getCountryNameByFlag(clickedButton).equals(questionPlay.get(index).getCorrectAnswer())) {
                 rightAnswer(clickedFlagLayout);
             } else {
@@ -98,6 +105,11 @@ public class PlayingRevert extends PlayCommon implements View.OnClickListener {
 
             txtScore.setText(String.format("%d", score));
         }
+    }
+
+    @Override
+    protected List<Button> getButtonsList() {
+        return buttonList;
     }
 
     private void setRightAnswerButtonReference(Question questionPlay) {

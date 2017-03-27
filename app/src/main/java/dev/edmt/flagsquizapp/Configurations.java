@@ -3,6 +3,8 @@ package dev.edmt.flagsquizapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -11,8 +13,12 @@ import dev.edmt.flagsquizapp.DbHelper.DbHelper;
 
 import static dev.edmt.flagsquizapp.Utils.Utils.getCountByMode;
 import static dev.edmt.flagsquizapp.Utils.Utils.getSecondsByMode;
+import static dev.edmt.flagsquizapp.Utils.Utils.showMessage;
 import static dev.edmt.flagsquizapp.constants.Constants.LIST_OF_COUNTS;
 import static dev.edmt.flagsquizapp.constants.Constants.LIST_OF_SECONDS;
+import static dev.edmt.flagsquizapp.constants.Constants.PLAY_COUNT_TABLE;
+import static dev.edmt.flagsquizapp.constants.Constants.RANKING_TABLE;
+import static dev.edmt.flagsquizapp.constants.Constants.RESET_DONE_MSG;
 
 public class Configurations extends AppCompatActivity {
 
@@ -22,6 +28,7 @@ public class Configurations extends AppCompatActivity {
 
     SeekBar seekBarCount, seekBarSpeed;
     TextView txtCountMode, txtSpeedMode;
+    Button resetScores;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,6 +38,9 @@ public class Configurations extends AppCompatActivity {
         db = new DbHelper(this);
         mode = db.getConfigs().get("CountMode");
         speed = db.getConfigs().get("SpeedMode");
+
+        //reset
+        resetScores = (Button) findViewById(R.id.resetScores);
 
         //Count
         seekBarCount = (SeekBar) findViewById(R.id.seekBarCount);
@@ -93,6 +103,20 @@ public class Configurations extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        resetScores.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    db.clearTable(PLAY_COUNT_TABLE);
+                    db.clearTable(RANKING_TABLE);
+                    showMessage(getApplicationContext(), RESET_DONE_MSG);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
             }
         });

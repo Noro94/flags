@@ -7,19 +7,23 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import dev.edmt.flagsquizapp.DbHelper.DbHelper;
 import dev.edmt.flagsquizapp.Model.Question;
 
 import static dev.edmt.flagsquizapp.constants.Constants.ACTIVE_CLASSIC;
+import static dev.edmt.flagsquizapp.Utils.Utils.manipulateButtons;
 
 public class PlayingClassic extends PlayCommon implements View.OnClickListener {
 
     //Control
     ImageView imageView;
     Button btnA, btnB, btnC, btnD;
+    List<Button> buttonList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +51,8 @@ public class PlayingClassic extends PlayCommon implements View.OnClickListener {
         btnC.setOnClickListener(this);
         btnD.setOnClickListener(this);
 
+        buttonList = Arrays.asList(btnA, btnB, btnC, btnD);
+
         buttonDefaultColor = R.color.colorButtonDefault;
     }
 
@@ -60,12 +66,13 @@ public class PlayingClassic extends PlayCommon implements View.OnClickListener {
 
             int ImageId = this.getResources().getIdentifier(questionPlay.get(index).getImage().toLowerCase(), "drawable", getPackageName());
             imageView.setBackgroundResource(ImageId);
-            btnA.setText(questionPlay.get(index).getAnswerA());
-            btnB.setText(questionPlay.get(index).getAnswerB());
-            btnC.setText(questionPlay.get(index).getAnswerC());
-            btnD.setText(questionPlay.get(index).getAnswerD());
+            btnA.setText(questionPlay.get(index).getAnswerA().replace("_", " "));
+            btnB.setText(questionPlay.get(index).getAnswerB().replace("_", " "));
+            btnC.setText(questionPlay.get(index).getAnswerC().replace("_", " "));
+            btnD.setText(questionPlay.get(index).getAnswerD().replace("_", " "));
 
             setRightAnswerButtonReference(questionPlay.get(index));
+            rightAnswerLayout = rightAnswerReference;
 
             mCountDown.start();
         } else {
@@ -79,7 +86,8 @@ public class PlayingClassic extends PlayCommon implements View.OnClickListener {
         mCountDown.cancel();
         if (index < totalQuestion) {
             final Button clickedButton = (Button) v;
-            if (clickedButton.getText().equals(questionPlay.get(index).getCorrectAnswer())) {
+            manipulateButtons(buttonList, false);
+            if (clickedButton.getText().equals(questionPlay.get(index).getCorrectAnswer().replace("_", " "))) {
                 rightAnswer(clickedButton);
             } else {
                 Map<String, View> answers = new HashMap<>();
@@ -90,6 +98,11 @@ public class PlayingClassic extends PlayCommon implements View.OnClickListener {
 
             txtScore.setText(String.format("%d", score));
         }
+    }
+
+    @Override
+    protected List<Button> getButtonsList() {
+        return buttonList;
     }
 
     private void setRightAnswerButtonReference(Question questionPlay) {

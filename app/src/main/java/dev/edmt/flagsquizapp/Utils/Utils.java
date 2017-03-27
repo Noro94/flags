@@ -3,8 +3,10 @@ package dev.edmt.flagsquizapp.Utils;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
+import java.util.List;
 import java.util.Map;
 
 import dev.edmt.flagsquizapp.Common.Common;
@@ -19,9 +21,13 @@ public class Utils {
 
     private Utils() {}
 
+    public static void showCorrectAnswer(View rightClickedAnswer) {
+        rightClickedAnswer.setBackgroundResource(R.color.colorRight);
+    }
+
     public static void answeredRight(Context context, View rightClickedAnswer) {
         rightClickedAnswer.setBackgroundResource(R.color.colorRight);
-        MediaPlayer mp = MediaPlayer.create(context, R.raw.right_answer);
+        MediaPlayer mp = MediaPlayer.create(context, R.raw.correct_answer);
         mp.start();
     }
 
@@ -42,8 +48,14 @@ public class Utils {
     }
 
     public static void playSoundTimeout(Context context) {
-        MediaPlayer mp = MediaPlayer.create(context, R.raw.end_time);
+        MediaPlayer mp = MediaPlayer.create(context, R.raw.time_out);
         mp.start();
+    }
+
+    public static void manipulateButtons(List<Button> buttonsList, boolean state) {
+        for (Button button : buttonsList) {
+            button.setClickable(state);
+        }
     }
 
     public static int getCountByMode(String mode) {

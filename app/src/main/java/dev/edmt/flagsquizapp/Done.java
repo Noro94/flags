@@ -5,20 +5,28 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static dev.edmt.flagsquizapp.constants.Constants.*;
 import static dev.edmt.flagsquizapp.Utils.Utils.getActiveClass;
 
 import dev.edmt.flagsquizapp.DbHelper.DbHelper;
+import dev.edmt.flagsquizapp.Model.Ranking;
 
 public class Done extends AppCompatActivity {
 
     Button btnTryAgain, btnMainMenu;
     TextView txtResultScore, txtResultQuestion;
     ProgressBar progressBarResult;
+    ImageView medalImageView;
     String previousActivity = "";
+
+    List scores = new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +41,7 @@ public class Done extends AppCompatActivity {
         progressBarResult = (ProgressBar) findViewById(R.id.doneProgressBar);
         btnTryAgain = (Button) findViewById(R.id.btnTryAgain);
         btnMainMenu = (Button) findViewById(R.id.btnMainMenu);
+        medalImageView = (ImageView) findViewById(R.id.medal);
 
         Bundle extra = getIntent().getExtras();
         if (extra != null) {
@@ -79,6 +88,20 @@ public class Done extends AppCompatActivity {
 
             //save score
             db.insertScore(finalScore);
+            List<Ranking> lstRanking = db.getRanking();
+
+            for (Ranking rank : lstRanking) {
+                scores.add(rank.getScore());
+            }
+
+            int position = scores.indexOf(finalScore);
+
+            if(position == 0 )// top1
+                medalImageView.setImageResource(R.drawable.top1);
+            else if(position == 1) // top 2
+                medalImageView.setImageResource(R.drawable.top2);
+            else
+                medalImageView.setImageResource(R.drawable.top3);
         }
 
         btnTryAgain.setOnClickListener(new View.OnClickListener() {

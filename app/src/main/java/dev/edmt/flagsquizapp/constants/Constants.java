@@ -19,7 +19,11 @@ public class Constants {
 
     public static final String FACEBOOK_URI = "https://www.facebook.com/artak.abrahamyan.106";
     public static final String RATE_MSG = "Thanks for your rate!";
+    public static final String RESET_DONE_MSG = "Scores are reset!";
 
     public static final String ACTIVE_CLASSIC = "Classic";
     public static final String ACTIVE_REVERT = "Revert";
+
+    public static final String PLAY_COUNT_TABLE = "UserPlayCount";
+    public static final String RANKING_TABLE = "Ranking";
 }
