@@ -8,19 +8,33 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PlayingClassic" />
-        <activity android:name=".PlayingRevert" />
-        <activity android:name=".Done" />
-        <activity android:name=".ModeOption" />
-        <activity android:name=".Configurations" />
-        <activity android:name=".Score"></activity>
+        <activity
+            android:name=".PlayingClassic"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PlayingRevert"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Done"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ModeOption"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Configurations"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Score"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

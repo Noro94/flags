@@ -8,4 +8,5 @@
     <color name="colorRight">#1cd400</color>
     <color name="colorButtonDefault">#217DAE</color>
     <color name="colorBackgroundDefault">#efefef</color>
+    <color name="colorBackgroundViewFlag">#cfcfcf</color>
 </resources>
