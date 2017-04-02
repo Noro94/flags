@@ -1,7 +1,11 @@
 package dev.edmt.flagsquizapp.constants;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import dev.edmt.flagsquizapp.Common.Common;
 
 public class Constants {
     public static final List LIST_OF_COUNTS = Arrays.asList(10, 30, 50, 100);
@@ -26,4 +30,6 @@ public class Constants {
 
     public static final String PLAY_COUNT_TABLE = "UserPlayCount";
     public static final String RANKING_TABLE = "Ranking";
+
+    public static final String EMPTY_SCORES = "Empty score list !";
 }

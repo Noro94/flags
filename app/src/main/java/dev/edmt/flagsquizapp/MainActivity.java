@@ -11,6 +11,7 @@ import java.io.IOException;
 
 import dev.edmt.flagsquizapp.DbHelper.DbHelper;
 
+import static dev.edmt.flagsquizapp.constants.Constants.EMPTY_SCORES;
 import static dev.edmt.flagsquizapp.constants.Constants.FACEBOOK_URI;
 import static dev.edmt.flagsquizapp.constants.Constants.RATE_MSG;
 import static dev.edmt.flagsquizapp.Utils.Utils.showMessage;
@@ -50,9 +51,13 @@ public class MainActivity extends AppCompatActivity {
         btnScore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Score.class);
-                startActivity(intent);
-                finish();
+                if (db.getRanking().size() > 0) {
+                    Intent intent = new Intent(getApplicationContext(), Score.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    showMessage(getApplicationContext(), EMPTY_SCORES);
+                }
             }
         });
 

@@ -15,6 +15,7 @@ import java.util.Map;
 import dev.edmt.flagsquizapp.DbHelper.DbHelper;
 import dev.edmt.flagsquizapp.Model.Question;
 
+import static dev.edmt.flagsquizapp.Utils.Utils.SpeedToScore;
 import static dev.edmt.flagsquizapp.Utils.Utils.manipulateButtons;
 import static dev.edmt.flagsquizapp.constants.Constants.ACTIVE_REVERT;
 
@@ -38,6 +39,7 @@ public class PlayingRevert extends PlayCommon implements View.OnClickListener {
         speed = configs.get("SpeedMode");
 
         setTimeoutAndInterval(speed);
+        rightAnswerScore = SpeedToScore(speed);
 
         txtScore = (TextView) findViewById(R.id.txtScore);
         txtQuestion = (TextView) findViewById(R.id.txtQuestion);

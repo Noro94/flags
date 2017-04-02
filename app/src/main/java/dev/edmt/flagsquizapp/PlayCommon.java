@@ -23,8 +23,6 @@ import dev.edmt.flagsquizapp.DbHelper.DbHelper;
 import dev.edmt.flagsquizapp.Model.Question;
 
 import static dev.edmt.flagsquizapp.Utils.Utils.*;
-import static dev.edmt.flagsquizapp.constants.Constants.ACTIVE_CLASSIC;
-import static dev.edmt.flagsquizapp.constants.Constants.ACTIVE_REVERT;
 
 public abstract class PlayCommon extends AppCompatActivity {
     protected Handler mHandler = new Handler();
@@ -34,6 +32,7 @@ public abstract class PlayCommon extends AppCompatActivity {
     long interval = 50; // 50 milli second
     long timeout = 10000; // 10 seconds
     int progressValue = 0;
+    int rightAnswerScore;
 
     boolean finishQuizCycle = false;
 
@@ -107,7 +106,7 @@ public abstract class PlayCommon extends AppCompatActivity {
     protected void rightAnswer(final View answer) {
         answeredRight(getApplicationContext(), answer);
 
-        score += 10;
+        score += rightAnswerScore;
         correctAnswer++;
 
         mHandler.postDelayed(new Runnable() {

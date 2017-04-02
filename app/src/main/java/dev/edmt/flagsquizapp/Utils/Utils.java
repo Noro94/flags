@@ -4,6 +4,7 @@ import android.content.Context;
 import android.media.MediaPlayer;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import java.util.List;
@@ -102,5 +103,20 @@ public class Utils {
             default:
                 return MainActivity.class;
         }
+    }
+
+    public static int SpeedToScore(String mode) {
+        int score = 0;
+
+        if (mode.equals(Common.SPEED.SLOW.toString()))
+            score = 10;
+        else if (mode.equals(Common.SPEED.MEDIUM.toString()))
+            score = 15;
+        else if (mode.equals(Common.SPEED.FAST.toString()))
+            score = 20;
+        else if (mode.equals(Common.SPEED.FASTEST.toString()))
+            score = 25;
+
+        return score;
     }
 }

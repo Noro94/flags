@@ -23,7 +23,7 @@ import static dev.edmt.flagsquizapp.Utils.Utils.getCountByMode;
 
 public class DbHelper extends SQLiteOpenHelper {
 
-    private static String DB_NAME = "MyLDB.db";
+    private static String DB_NAME = "MyDataBase.db";
     private static String DB_PATH = "";
     private SQLiteDatabase mDataBase;
     private Context mContext = null;
@@ -32,7 +32,7 @@ public class DbHelper extends SQLiteOpenHelper {
         super(context, DB_NAME, null, 1);
 
         DB_PATH = context.getApplicationInfo().dataDir + "/databases/";
-        File file = new File(DB_PATH+"MyLDB.db");
+        File file = new File(DB_PATH+"MyDataBase.db");
         if(file.exists())
             openDataBase(); // Add this line to fix db.insert can't insert values
         this.mContext = context;
