@@ -1,4 +1,4 @@
-package dev.edmt.flagsquizapp.Common;
+package dev.art.flags.Common;
 
 public class Common {
     public enum MODE {

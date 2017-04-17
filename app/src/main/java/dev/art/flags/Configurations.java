@@ -1,4 +1,4 @@
-package dev.edmt.flagsquizapp;
+package dev.art.flags;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,17 +8,13 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import dev.edmt.flagsquizapp.Common.Common;
-import dev.edmt.flagsquizapp.DbHelper.DbHelper;
+import dev.art.flags.Common.Common;
+import dev.art.flags.DbHelper.DbHelper;
+import dev.art.flags.constants.Constants;
 
-import static dev.edmt.flagsquizapp.Utils.Utils.getCountByMode;
-import static dev.edmt.flagsquizapp.Utils.Utils.getSecondsByMode;
-import static dev.edmt.flagsquizapp.Utils.Utils.showMessage;
-import static dev.edmt.flagsquizapp.constants.Constants.LIST_OF_COUNTS;
-import static dev.edmt.flagsquizapp.constants.Constants.LIST_OF_SECONDS;
-import static dev.edmt.flagsquizapp.constants.Constants.PLAY_COUNT_TABLE;
-import static dev.edmt.flagsquizapp.constants.Constants.RANKING_TABLE;
-import static dev.edmt.flagsquizapp.constants.Constants.RESET_DONE_MSG;
+import static dev.art.flags.Utils.Utils.getCountByMode;
+import static dev.art.flags.Utils.Utils.getSecondsByMode;
+import static dev.art.flags.Utils.Utils.showMessage;
 
 public class Configurations extends AppCompatActivity {
 
@@ -47,14 +43,14 @@ public class Configurations extends AppCompatActivity {
         txtCountMode = (TextView) findViewById(R.id.txtCountMode);
 
         applySeekBarCountChange(mode, false);
-        seekBarCount.setProgress(LIST_OF_COUNTS.indexOf(getCountByMode(mode)));
+        seekBarCount.setProgress(Constants.LIST_OF_COUNTS.indexOf(getCountByMode(mode)));
 
         //Speed
         seekBarSpeed = (SeekBar) findViewById(R.id.seekBarSpeed);
         txtSpeedMode = (TextView) findViewById(R.id.txtSpeedMode);
 
         applySeekBarSpeedChange(speed, false);
-        seekBarSpeed.setProgress(LIST_OF_SECONDS.indexOf(getSecondsByMode(speed)));
+        seekBarSpeed.setProgress(Constants.LIST_OF_SECONDS.indexOf(getSecondsByMode(speed)));
 
 
         //Event for count
@@ -111,9 +107,9 @@ public class Configurations extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    db.clearTable(PLAY_COUNT_TABLE);
-                    db.clearTable(RANKING_TABLE);
-                    showMessage(getApplicationContext(), RESET_DONE_MSG);
+                    db.clearTable(Constants.PLAY_COUNT_TABLE);
+                    db.clearTable(Constants.RANKING_TABLE);
+                    showMessage(getApplicationContext(), Constants.RESET_DONE_MSG);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

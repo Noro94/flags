@@ -1,4 +1,4 @@
-package dev.edmt.flagsquizapp;
+package dev.art.flags;
 
 import android.os.Bundle;
 import android.view.View;
@@ -12,12 +12,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import dev.edmt.flagsquizapp.DbHelper.DbHelper;
-import dev.edmt.flagsquizapp.Model.Question;
+import dev.art.flags.DbHelper.DbHelper;
+import dev.art.flags.Model.Question;
 
-import static dev.edmt.flagsquizapp.Utils.Utils.SpeedToScore;
-import static dev.edmt.flagsquizapp.Utils.Utils.manipulateButtons;
-import static dev.edmt.flagsquizapp.constants.Constants.ACTIVE_REVERT;
+import static dev.art.flags.Utils.Utils.SpeedToScore;
+import static dev.art.flags.Utils.Utils.manipulateButtons;
+import static dev.art.flags.constants.Constants.ACTIVE_REVERT;
 
 public class PlayingRevert extends PlayCommon implements View.OnClickListener {
 

@@ -1,4 +1,4 @@
-package dev.edmt.flagsquizapp;
+package dev.art.flags;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,9 +7,9 @@ import android.widget.ListView;
 
 import java.util.List;
 
-import dev.edmt.flagsquizapp.Common.CustomAdapter;
-import dev.edmt.flagsquizapp.DbHelper.DbHelper;
-import dev.edmt.flagsquizapp.Model.Ranking;
+import dev.art.flags.Common.CustomAdapter;
+import dev.art.flags.DbHelper.DbHelper;
+import dev.art.flags.Model.Ranking;
 
 public class Score extends AppCompatActivity {
     ListView lstView;

@@ -1,4 +1,4 @@
-package dev.edmt.flagsquizapp;
+package dev.art.flags;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -12,11 +12,11 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import static dev.edmt.flagsquizapp.constants.Constants.*;
-import static dev.edmt.flagsquizapp.Utils.Utils.getActiveClass;
+import static dev.art.flags.Utils.Utils.getActiveClass;
 
-import dev.edmt.flagsquizapp.DbHelper.DbHelper;
-import dev.edmt.flagsquizapp.Model.Ranking;
+import dev.art.flags.DbHelper.DbHelper;
+import dev.art.flags.Model.Ranking;
+import dev.art.flags.constants.Constants;
 
 public class Done extends AppCompatActivity {
 
@@ -52,25 +52,25 @@ public class Done extends AppCompatActivity {
 
             //Update 2.0
             int playCount = 0;
-            if(totalQuestion == EASY_MODE_NUM) // EASY MODE
+            if(totalQuestion == Constants.EASY_MODE_NUM) // EASY MODE
             {
                 playCount = db.getPlayCount(0);
                 playCount++;
                 db.updatePlayCount(0,playCount); // Set PlayCount ++
             }
-            else if(totalQuestion == MEDIUM_MODE_NUM) // MEDIUM MODE
+            else if(totalQuestion == Constants.MEDIUM_MODE_NUM) // MEDIUM MODE
             {
                 playCount = db.getPlayCount(1);
                 playCount++;
                 db.updatePlayCount(1,playCount); // Set PlayCount ++
             }
-            else if(totalQuestion == HARD_MODE_NUM) // HARD MODE
+            else if(totalQuestion == Constants.HARD_MODE_NUM) // HARD MODE
             {
                 playCount = db.getPlayCount(2);
                 playCount++;
                 db.updatePlayCount(2,playCount); // Set PlayCount ++
             }
-            else if(totalQuestion == HARDEST_MODE_NUM) // HARDEST MODE
+            else if(totalQuestion == Constants.HARDEST_MODE_NUM) // HARDEST MODE
             {
                 playCount = db.getPlayCount(3);
                 playCount++;

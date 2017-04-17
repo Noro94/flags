@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundPage"
-    tools:context="dev.edmt.flagsquizapp.PlayingRevert">
+    tools:context="dev.art.flags.PlayingRevert">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/question_country"

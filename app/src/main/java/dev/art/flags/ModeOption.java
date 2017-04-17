@@ -1,4 +1,4 @@
-package dev.edmt.flagsquizapp;
+package dev.art.flags;
 
 import android.content.Intent;
 import android.os.Bundle;

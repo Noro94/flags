@@ -1,8 +1,7 @@
-package dev.edmt.flagsquizapp;
+package dev.art.flags;
 
 import android.app.ActivityManager;
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -10,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -18,11 +16,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import dev.edmt.flagsquizapp.Common.Common;
-import dev.edmt.flagsquizapp.DbHelper.DbHelper;
-import dev.edmt.flagsquizapp.Model.Question;
+import dev.art.flags.Common.Common;
+import dev.art.flags.DbHelper.DbHelper;
+import dev.art.flags.Model.Question;
 
-import static dev.edmt.flagsquizapp.Utils.Utils.*;
+import static dev.art.flags.Utils.Utils.answeredRight;
+import static dev.art.flags.Utils.Utils.answeredWrong;
+import static dev.art.flags.Utils.Utils.getSecondsByMode;
+import static dev.art.flags.Utils.Utils.manipulateButtons;
+import static dev.art.flags.Utils.Utils.playSoundTimeout;
+import static dev.art.flags.Utils.Utils.setDefaultColor;
+import static dev.art.flags.Utils.Utils.showCorrectAnswer;
 
 public abstract class PlayCommon extends AppCompatActivity {
     protected Handler mHandler = new Handler();

@@ -1,4 +1,4 @@
-package dev.edmt.flagsquizapp.DbHelper;
+package dev.art.flags.DbHelper;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -16,10 +16,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import dev.edmt.flagsquizapp.Model.Question;
-import dev.edmt.flagsquizapp.Model.Ranking;
+import dev.art.flags.Model.Question;
+import dev.art.flags.Model.Ranking;
 
-import static dev.edmt.flagsquizapp.Utils.Utils.getCountByMode;
+import static dev.art.flags.Utils.Utils.getCountByMode;
 
 public class DbHelper extends SQLiteOpenHelper {
 

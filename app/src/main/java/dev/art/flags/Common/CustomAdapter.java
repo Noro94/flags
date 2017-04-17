@@ -1,4 +1,4 @@
-package dev.edmt.flagsquizapp.Common;
+package dev.art.flags.Common;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import dev.edmt.flagsquizapp.Model.Ranking;
-import dev.edmt.flagsquizapp.R;
+import dev.art.flags.Model.Ranking;
+import dev.art.flags.R;
 
 public class CustomAdapter extends BaseAdapter {
 

@@ -1,4 +1,4 @@
-package dev.edmt.flagsquizapp.Utils;
+package dev.art.flags.Utils;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,19 +6,17 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Switch;
 import android.widget.Toast;
 
 import java.util.List;
 import java.util.Map;
 
-import dev.edmt.flagsquizapp.Common.Common;
-import dev.edmt.flagsquizapp.MainActivity;
-import dev.edmt.flagsquizapp.PlayingClassic;
-import dev.edmt.flagsquizapp.PlayingRevert;
-import dev.edmt.flagsquizapp.R;
-
-import static dev.edmt.flagsquizapp.constants.Constants.*;
+import dev.art.flags.Common.Common;
+import dev.art.flags.MainActivity;
+import dev.art.flags.PlayingClassic;
+import dev.art.flags.PlayingRevert;
+import dev.art.flags.constants.Constants;
+import dev.art.flags.R;
 
 public class Utils {
 
@@ -65,13 +63,13 @@ public class Utils {
         int limit = 0;
 
         if (mode.equals(Common.MODE.EASY.toString()))
-            limit = EASY_MODE_NUM;
+            limit = Constants.EASY_MODE_NUM;
         else if (mode.equals(Common.MODE.MEDIUM.toString()))
-            limit = MEDIUM_MODE_NUM;
+            limit = Constants.MEDIUM_MODE_NUM;
         else if (mode.equals(Common.MODE.HARD.toString()))
-            limit = HARD_MODE_NUM;
+            limit = Constants.HARD_MODE_NUM;
         else if (mode.equals(Common.MODE.HARDEST.toString()))
-            limit = HARDEST_MODE_NUM;
+            limit = Constants.HARDEST_MODE_NUM;
 
         return limit;
     }
@@ -85,22 +83,22 @@ public class Utils {
         int seconds = 0;
 
         if (mode.equals(Common.SPEED.SLOW.toString()))
-            seconds = SLOW_SPEED;
+            seconds = Constants.SLOW_SPEED;
         else if (mode.equals(Common.SPEED.MEDIUM.toString()))
-            seconds = MEDIUM_SPEED;
+            seconds = Constants.MEDIUM_SPEED;
         else if (mode.equals(Common.SPEED.FAST.toString()))
-            seconds = FAST_SPEED;
+            seconds = Constants.FAST_SPEED;
         else if (mode.equals(Common.SPEED.FASTEST.toString()))
-            seconds = FASTEST_SPEED;
+            seconds = Constants.FASTEST_SPEED;
 
         return seconds;
     }
 
     public static Class getActiveClass(String activeClassName) {
         switch (activeClassName) {
-            case ACTIVE_CLASSIC:
+            case Constants.ACTIVE_CLASSIC:
                 return PlayingClassic.class;
-            case ACTIVE_REVERT:
+            case Constants.ACTIVE_REVERT:
                 return PlayingRevert.class;
             default:
                 return MainActivity.class;
@@ -127,9 +125,9 @@ public class Utils {
         try {
             int versionCode = context.getPackageManager().getPackageInfo("com.facebook.katana", 0).versionCode;
             if (versionCode >= 3002850) { //newer versions of fb app
-                return new Intent(Intent.ACTION_VIEW, Uri.parse("fb://facewebmodal/f?href=" + FACEBOOK_URL));
+                return new Intent(Intent.ACTION_VIEW, Uri.parse("fb://facewebmodal/f?href=" + Constants.FACEBOOK_URL));
             } else { //older versions of fb app
-                return new Intent(Intent.ACTION_VIEW, Uri.parse("fb://page/" + FACEBOOK_PAGE_ID));
+                return new Intent(Intent.ACTION_VIEW, Uri.parse("fb://page/" + Constants.FACEBOOK_PAGE_ID));
             }
 
         } catch (Exception e) {

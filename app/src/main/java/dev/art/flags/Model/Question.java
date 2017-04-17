@@ -1,4 +1,4 @@
-package dev.edmt.flagsquizapp.Model;
+package dev.art.flags.Model;
 
 public class Question {
     private int ID;

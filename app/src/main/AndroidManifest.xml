@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="dev.edmt.flagsquizapp">
+    package="dev.art.flags">
 
     <application
         android:allowBackup="true"
@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name="dev.art.flags.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,22 +18,22 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PlayingClassic"
+            android:name="dev.art.flags.PlayingClassic"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".PlayingRevert"
+            android:name="dev.art.flags.PlayingRevert"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Done"
+            android:name="dev.art.flags.Done"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ModeOption"
+            android:name="dev.art.flags.ModeOption"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Configurations"
+            android:name="dev.art.flags.Configurations"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Score"
+            android:name="dev.art.flags.Score"
             android:screenOrientation="portrait" />
     </application>
 
