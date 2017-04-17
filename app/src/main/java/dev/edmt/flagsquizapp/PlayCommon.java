@@ -33,6 +33,7 @@ public abstract class PlayCommon extends AppCompatActivity {
     long timeout = 10000; // 10 seconds
     int progressValue = 0;
     int rightAnswerScore;
+    int rightAnswerCount = 0;
 
     boolean finishQuizCycle = false;
 

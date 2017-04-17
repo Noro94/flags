@@ -91,6 +91,7 @@ public class PlayingClassic extends PlayCommon implements View.OnClickListener {
             manipulateButtons(buttonList, false);
             if (clickedButton.getText().equals(questionPlay.get(index).getCorrectAnswer().replace("_", " "))) {
                 rightAnswer(clickedButton);
+                rightAnswerCount++;
             } else {
                 Map<String, View> answers = new HashMap<>();
                 answers.put("clicked", clickedButton);
@@ -98,7 +99,7 @@ public class PlayingClassic extends PlayCommon implements View.OnClickListener {
                 wrongAnswer(answers);
             }
 
-            txtScore.setText(String.format("%d", score));
+            txtScore.setText(String.format("%d/%d", rightAnswerCount, score));
         }
     }
 

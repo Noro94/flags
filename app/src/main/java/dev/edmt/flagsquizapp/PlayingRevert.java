@@ -98,6 +98,7 @@ public class PlayingRevert extends PlayCommon implements View.OnClickListener {
             manipulateButtons(buttonList, false);
             if (getCountryNameByFlag(clickedButton).equals(questionPlay.get(index).getCorrectAnswer())) {
                 rightAnswer(clickedFlagLayout);
+                rightAnswerCount++;
             } else {
                 Map<String, View> answers = new HashMap<>();
                 answers.put("clicked", clickedFlagLayout);
@@ -105,7 +106,7 @@ public class PlayingRevert extends PlayCommon implements View.OnClickListener {
                 wrongAnswer(answers);
             }
 
-            txtScore.setText(String.format("%d", score));
+            txtScore.setText(String.format("%d/%d", rightAnswerCount, score));
         }
     }
 

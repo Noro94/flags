@@ -84,7 +84,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="CURRENT SCORES"
+                    android:text="CORRECT / SCORE"
                     android:textColor="#217DAE"
                     android:textSize="10sp" />
 
@@ -110,7 +110,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/button_border"
                     android:gravity="center"
-                    android:text="0"
+                    android:text="0/0"
                     android:textSize="24sp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content" />
