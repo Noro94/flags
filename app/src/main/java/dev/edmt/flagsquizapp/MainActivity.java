@@ -12,9 +12,9 @@ import java.io.IOException;
 import dev.edmt.flagsquizapp.DbHelper.DbHelper;
 
 import static dev.edmt.flagsquizapp.constants.Constants.EMPTY_SCORES;
-import static dev.edmt.flagsquizapp.constants.Constants.FACEBOOK_URI;
 import static dev.edmt.flagsquizapp.constants.Constants.RATE_MSG;
 import static dev.edmt.flagsquizapp.Utils.Utils.showMessage;
+import static dev.edmt.flagsquizapp.Utils.Utils.getOpenFacebookIntent;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -64,8 +64,8 @@ public class MainActivity extends AppCompatActivity {
         btnFacebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Uri uri = Uri.parse(FACEBOOK_URI); // missing 'http://' will cause crashed
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+               // Uri uri = Uri.parse(FACEBOOK_URI); // missing 'http://' will cause crashed
+                Intent intent = getOpenFacebookIntent(getApplicationContext());
                 startActivity(intent);
             }
         });

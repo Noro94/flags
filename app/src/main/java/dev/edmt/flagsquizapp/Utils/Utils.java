@@ -1,7 +1,9 @@
 package dev.edmt.flagsquizapp.Utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Switch;
@@ -118,5 +120,20 @@ public class Utils {
             score = 25;
 
         return score;
+    }
+
+    public static Intent getOpenFacebookIntent(Context context) {
+
+        try {
+            int versionCode = context.getPackageManager().getPackageInfo("com.facebook.katana", 0).versionCode;
+            if (versionCode >= 3002850) { //newer versions of fb app
+                return new Intent(Intent.ACTION_VIEW, Uri.parse("fb://facewebmodal/f?href=" + FACEBOOK_URL));
+            } else { //older versions of fb app
+                return new Intent(Intent.ACTION_VIEW, Uri.parse("fb://page/" + FACEBOOK_PAGE_ID));
+            }
+
+        } catch (Exception e) {
+            return new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/geogame"));
+        }
     }
 }

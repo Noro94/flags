@@ -21,7 +21,8 @@ public class Constants {
     public static final int FAST_SPEED = 10;
     public static final int FASTEST_SPEED = 5;
 
-    public static final String FACEBOOK_URI = "https://www.facebook.com/artak.abrahamyan.106";
+    public static final String FACEBOOK_URL = "https://www.facebook.com/geogame";
+    public static final String FACEBOOK_PAGE_ID = "geogame";
     public static final String RATE_MSG = "Thanks for your rate!";
     public static final String RESET_DONE_MSG = "Scores are reset!";
 
