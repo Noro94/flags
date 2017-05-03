@@ -15,9 +15,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import dev.art.flags.Common.Common;
 import dev.art.flags.DbHelper.DbHelper;
+import dev.art.flags.Model.CapitalsQuestion;
 import dev.art.flags.Model.Question;
 
 import static dev.art.flags.Utils.Utils.answeredRight;
@@ -29,6 +31,8 @@ import static dev.art.flags.Utils.Utils.setDefaultColor;
 import static dev.art.flags.Utils.Utils.showCorrectAnswer;
 
 public abstract class PlayCommon extends AppCompatActivity {
+    String playType = null;
+
     protected Handler mHandler = new Handler();
 
     final long DELAY_AFTER_ANSWER = 1000; // 1 second
@@ -43,12 +47,14 @@ public abstract class PlayCommon extends AppCompatActivity {
 
     CountDownTimer mCountDown; // for progressbar
     List<Question> questionPlay = new ArrayList<>(); //total Question
+    List<CapitalsQuestion> capitalsQuestionPlay = new ArrayList<>();
     Map<String,String> configs = new HashMap<>();
     DbHelper db;
     int index = 0, score = 0, thisQuestion = 0, totalQuestion, correctAnswer, buttonDefaultColor;
     String mode = Common.MODE.EASY.toString();
     String speed = Common.SPEED.SLOW.toString();
     String activeClassName = "";
+    String whereStatement = "";
 
     ProgressBar progressBar;
     TextView txtScore, txtQuestion;
@@ -59,8 +65,15 @@ public abstract class PlayCommon extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        questionPlay = db.getQuestionMode(mode);
-        totalQuestion = questionPlay.size();
+        if (Objects.equals(playType, Common.PLAY.FLAGS.toString())) {
+            questionPlay = db.getQuestionMode(mode);
+            totalQuestion = questionPlay.size();
+        } else if (Objects.equals(playType, Common.PLAY.CAPITALS.toString())) {
+            capitalsQuestionPlay = db.getCapitalsQuestionMode(mode, whereStatement);
+            totalQuestion = capitalsQuestionPlay.size();
+        } else {
+            finish();
+        }
 
         mCountDown = new CountDownTimer(timeout, interval) {
             @Override
@@ -103,9 +116,17 @@ public abstract class PlayCommon extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(getApplicationContext(), ModeOption.class);
-        startActivity(intent);
-        finishThisQuiz();
+        if (Objects.equals(playType, Common.PLAY.FLAGS.toString())) {
+            Intent intent = new Intent(getApplicationContext(), ModeOption.class);
+            startActivity(intent);
+            finishThisQuiz();
+        } else if (Objects.equals(playType, Common.PLAY.CAPITALS.toString())) {
+            Intent intent = new Intent(getApplicationContext(), CapitalsModeOption.class);
+            startActivity(intent);
+            finishThisQuiz();
+        } else {
+            finish();
+        }
     }
 
     protected void rightAnswer(final View answer) {

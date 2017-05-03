@@ -17,7 +17,7 @@ import static dev.art.flags.Utils.Utils.getOpenFacebookIntent;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnPlay, btnScore, btnFacebook, btnConfigs, btnRateUs;
+    Button btnPlayFlags, btnPlayCapitals, btnScore, btnFacebook, btnConfigs;
     DbHelper db;
 
     @Override
@@ -25,11 +25,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnPlay = (Button) findViewById(R.id.btnPlay);
+        btnPlayFlags = (Button) findViewById(R.id.btnPlayFlags);
+        btnPlayCapitals = (Button) findViewById(R.id.btnPlayCapitals);
         btnScore = (Button) findViewById(R.id.btnScore);
         btnFacebook = (Button) findViewById(R.id.facebook);
         btnConfigs = (Button) findViewById(R.id.configs);
-        btnRateUs = (Button) findViewById(R.id.rateUs);
 
         db = new DbHelper(this);
         try {
@@ -38,10 +38,19 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        btnPlay.setOnClickListener(new View.OnClickListener() {
+        btnPlayFlags.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ModeOption.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        btnPlayCapitals.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CapitalsModeOption.class);
                 startActivity(intent);
                 finish();
             }
@@ -75,13 +84,6 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), Configurations.class);
                 startActivity(intent);
                 finish();
-            }
-        });
-
-        btnRateUs.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showMessage(getApplicationContext(), RATE_MSG);
             }
         });
     }

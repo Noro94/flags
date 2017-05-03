@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_capitals_play_mode"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundPage"
+    tools:context="dev.art.flags.CapitalsModeOption">
+
+    <TextView
+        android:id="@+id/modeOption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        android:text="CHOSE CONTINENT"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:padding="5dp"
+        android:background="@drawable/round_corner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/modeOption"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:id="@+id/linearLayout2">
+
+            <Button
+                android:id="@+id/EU_europe"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="fill_parent"
+                android:layout_height="95dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginBottom="6dp"
+                android:layout_weight="1"
+                android:theme="@style/MyButton"
+                android:background="@drawable/eu_europe">
+            </Button>
+
+            <Button
+                android:id="@+id/AS_asia"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="fill_parent"
+                android:layout_height="95dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginBottom="6dp"
+                android:layout_weight="1"
+                android:theme="@style/MyButton"
+                android:background="@drawable/as_asia">
+            </Button>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_below="@+id/linearLayout2"
+            android:layout_alignParentStart="true">
+
+            <Button
+                android:id="@+id/NA_north_america"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="fill_parent"
+                android:layout_height="95dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginBottom="6dp"
+                android:layout_weight="1"
+                android:theme="@style/MyButton"
+                android:background="@drawable/na_north_america">
+            </Button>
+
+            <Button
+                android:id="@+id/SA_south_america"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="fill_parent"
+                android:layout_height="95dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginBottom="6dp"
+                android:layout_weight="1"
+                android:theme="@style/MyButton"
+                android:background="@drawable/sa_south_america">
+            </Button>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_below="@+id/linearLayout3"
+            android:layout_alignParentStart="true">
+
+            <Button
+                android:id="@+id/AF_africa"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="fill_parent"
+                android:layout_height="95dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginBottom="6dp"
+                android:layout_weight="1"
+                android:theme="@style/MyButton"
+                android:background="@drawable/af_africa">
+            </Button>
+
+            <Button
+                android:id="@+id/OC_oceania"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="fill_parent"
+                android:layout_height="95dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginBottom="6dp"
+                android:layout_weight="1"
+                android:theme="@style/MyButton"
+                android:background="@drawable/oc_oceania">
+            </Button>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_below="@+id/linearLayout4"
+            android:layout_alignParentStart="true">
+
+            <Button
+                android:id="@+id/AN_antarctica"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="fill_parent"
+                android:layout_height="95dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginBottom="6dp"
+                android:layout_weight="1"
+                android:theme="@style/MyButton"
+                android:background="@drawable/an_antarctica">
+            </Button>
+
+            <Button
+                android:id="@+id/OO_all"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="fill_parent"
+                android:layout_height="95dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginBottom="6dp"
+                android:layout_weight="1"
+                android:theme="@style/MyButton"
+                android:background="@drawable/oo_all">
+            </Button>
+
+        </LinearLayout>
+
+</RelativeLayout>
+</RelativeLayout>

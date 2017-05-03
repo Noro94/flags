@@ -24,6 +24,7 @@ public class Constants {
 
     public static final String ACTIVE_CLASSIC = "Classic";
     public static final String ACTIVE_REVERT = "Revert";
+    public static final String ACTIVE_CAPITALS = "Capitals";
 
     public static final String PLAY_COUNT_TABLE = "UserPlayCount";
     public static final String RANKING_TABLE = "Ranking";

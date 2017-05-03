@@ -30,6 +30,12 @@
             android:name="dev.art.flags.ModeOption"
             android:screenOrientation="portrait" />
         <activity
+            android:name="dev.art.flags.CapitalsModeOption"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="dev.art.flags.PlayingCapitals"
+            android:screenOrientation="portrait" />
+        <activity
             android:name="dev.art.flags.Configurations"
             android:screenOrientation="portrait" />
         <activity

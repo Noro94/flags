@@ -39,27 +39,27 @@
             android:weightSum="1">
 
             <Button
-                android:id="@+id/btnPlay"
+                android:id="@+id/btnPlayFlags"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:background="#217DAE"
                 android:foreground="?android:attr/selectableItemBackground"
-                android:text="PLAY"
+                android:text="FLAGS"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold"
                 android:theme="@style/MyButton" />
 
             <Button
-                android:id="@+id/btnScore"
+                android:id="@+id/btnPlayCapitals"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:background="#52B0C0"
                 android:foreground="?android:attr/selectableItemBackground"
-                android:text="SCORE"
+                android:text="CAPITALS"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold"
                 android:theme="@style/MyButton" />
@@ -92,13 +92,13 @@
             android:background="@drawable/facebook" />
 
         <Button
-            android:id="@+id/rateUs"
+            android:id="@+id/btnScore"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_centerInParent="true"
             android:layout_margin="5dp"
-            android:background="@drawable/rate_us" />
+            android:background="@drawable/rating_icon" />
 
         <Button
             android:id="@+id/configs"

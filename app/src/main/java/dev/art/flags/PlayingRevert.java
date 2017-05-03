@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import dev.art.flags.Common.Common;
 import dev.art.flags.DbHelper.DbHelper;
 import dev.art.flags.Model.Question;
 
@@ -32,6 +33,8 @@ public class PlayingRevert extends PlayCommon implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playing_revert);
+
+        playType = Common.PLAY.FLAGS.toString();
 
         db = new DbHelper(this);
         configs = db.getConfigs();

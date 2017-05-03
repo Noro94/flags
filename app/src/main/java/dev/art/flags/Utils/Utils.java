@@ -13,6 +13,7 @@ import java.util.Map;
 
 import dev.art.flags.Common.Common;
 import dev.art.flags.MainActivity;
+import dev.art.flags.PlayingCapitals;
 import dev.art.flags.PlayingClassic;
 import dev.art.flags.PlayingRevert;
 import dev.art.flags.constants.Constants;
@@ -29,14 +30,24 @@ public class Utils {
     public static void answeredRight(Context context, View rightClickedAnswer) {
         rightClickedAnswer.setBackgroundResource(R.color.colorRight);
         MediaPlayer mp = MediaPlayer.create(context, R.raw.correct_answer);
-        mp.start();
+        reuseMP(mp, context, R.raw.correct_answer).start();
     }
 
     public static void answeredWrong(Context context, View clickedAnswer, View rightAnswer) {
         clickedAnswer.setBackgroundResource(R.color.colorWrong);
         rightAnswer.setBackgroundResource(R.color.colorRight);
         MediaPlayer mp = MediaPlayer.create(context, R.raw.wrong_answer);
-        mp.start();
+        reuseMP(mp, context, R.raw.wrong_answer).start();
+    }
+
+    private static MediaPlayer reuseMP(MediaPlayer mp, Context context, int resourceId) {
+        if (mp.isPlaying()) {
+            mp.stop();
+            mp.release();
+            mp = MediaPlayer.create(context, resourceId);
+        }
+
+        return mp;
     }
 
     public static void setDefaultColor(Map changeList, int defaultColor) {
@@ -50,7 +61,7 @@ public class Utils {
 
     public static void playSoundTimeout(Context context) {
         MediaPlayer mp = MediaPlayer.create(context, R.raw.time_out);
-        mp.start();
+        reuseMP(mp, context, R.raw.time_out).start();
     }
 
     public static void manipulateButtons(List<Button> buttonsList, boolean state) {
@@ -100,6 +111,8 @@ public class Utils {
                 return PlayingClassic.class;
             case Constants.ACTIVE_REVERT:
                 return PlayingRevert.class;
+            case Constants.ACTIVE_CAPITALS:
+                return PlayingCapitals.class;
             default:
                 return MainActivity.class;
         }
@@ -133,5 +146,9 @@ public class Utils {
         } catch (Exception e) {
             return new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/geogame"));
         }
+    }
+
+    public static String makeCapitalsWhereStatement(String value) {
+        return "WHERE Continent = \""+value+"\"";
     }
 }

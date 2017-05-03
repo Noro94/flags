@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import dev.art.flags.Model.CapitalsQuestion;
 import dev.art.flags.Model.Question;
 import dev.art.flags.Model.Ranking;
 
@@ -23,7 +24,7 @@ import static dev.art.flags.Utils.Utils.getCountByMode;
 
 public class DbHelper extends SQLiteOpenHelper {
 
-    private static String DB_NAME = "LocalDataBase.db";
+    private static String DB_NAME = "MyLocalDataBase.db";
     private static String DB_PATH = "";
     private SQLiteDatabase mDataBase;
     private Context mContext = null;
@@ -32,7 +33,7 @@ public class DbHelper extends SQLiteOpenHelper {
         super(context, DB_NAME, null, 1);
 
         DB_PATH = context.getApplicationInfo().dataDir + "/databases/";
-        File file = new File(DB_PATH+"LocalDataBase.db");
+        File file = new File(DB_PATH+"MyLocalDataBase.db");
         if(file.exists())
             openDataBase(); // Add this line to fix db.insert can't insert values
         this.mContext = context;
@@ -132,6 +133,37 @@ public class DbHelper extends SQLiteOpenHelper {
         return listQuestion;
     }
 
+    public List<CapitalsQuestion> getAllCountriesQuestion() {
+        List<CapitalsQuestion> listCapitalsQuestion = new ArrayList<>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c;
+        try {
+            c = db.rawQuery("SELECT * FROM CtyQuestion ORDER BY Random()", null);
+            if (c == null) return null;
+            c.moveToFirst();
+            do {
+                int id = c.getInt(c.getColumnIndex("ID"));
+                String ctyName = c.getString(c.getColumnIndex("CtyName"));
+                String answerA = c.getString(c.getColumnIndex("AnswerA"));
+                String answerB = c.getString(c.getColumnIndex("AnswerB"));
+                String answerC = c.getString(c.getColumnIndex("AnswerC"));
+                String answerD = c.getString(c.getColumnIndex("AnswerD"));
+                String correctAnswer = c.getString(c.getColumnIndex("CorrectAnswer"));
+                String continent = c.getString(c.getColumnIndex("Continent"));
+
+                CapitalsQuestion capitalsQuestion = new CapitalsQuestion(id, ctyName, answerA, answerB, answerC, answerD, correctAnswer, continent);
+                listCapitalsQuestion.add(capitalsQuestion);
+            }
+            while (c.moveToNext());
+            c.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        db.close();
+        return listCapitalsQuestion;
+    }
+
     public Map<String, String> getConfigs() {
         SQLiteDatabase db = this.getWritableDatabase();
         Map<String, String> configs = new HashMap<>();
@@ -205,6 +237,41 @@ public class DbHelper extends SQLiteOpenHelper {
         db.close();
         return listQuestion;
     }
+
+
+    public List<CapitalsQuestion> getCapitalsQuestionMode(String mode, String whereStatement) {
+        List<CapitalsQuestion> listCapitalsQuestion = new ArrayList<>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c;
+        int limit = 0;
+        limit = getCountByMode(mode);
+        try {
+            c = db.rawQuery(String.format("SELECT * FROM CtyQuestion %s ORDER BY Random() LIMIT %d", whereStatement, limit), null);
+            if (c == null) return null;
+            c.moveToFirst();
+            do {
+                int id = c.getInt(c.getColumnIndex("ID"));
+                String ctyName = c.getString(c.getColumnIndex("CtyName"));
+                String answerA = c.getString(c.getColumnIndex("AnswerA"));
+                String answerB = c.getString(c.getColumnIndex("AnswerB"));
+                String answerC = c.getString(c.getColumnIndex("AnswerC"));
+                String answerD = c.getString(c.getColumnIndex("AnswerD"));
+                String correctAnswer = c.getString(c.getColumnIndex("CorrectAnswer"));
+                String continent = c.getString(c.getColumnIndex("Continent"));
+
+                CapitalsQuestion capitalsQuestion = new CapitalsQuestion(id, ctyName, answerA, answerB, answerC, answerD, correctAnswer, continent);
+                listCapitalsQuestion.add(capitalsQuestion);
+            }
+            while (c.moveToNext());
+            c.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        db.close();
+        return listCapitalsQuestion;
+    }
+
 
     //Insert Score to Ranking table
     public void insertScore(double score) {
