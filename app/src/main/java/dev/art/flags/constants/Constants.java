@@ -30,4 +30,6 @@ public class Constants {
     public static final String RANKING_TABLE = "Ranking";
 
     public static final String EMPTY_SCORES = "Empty score list !";
+
+    public static final String NOTE = "<font color=#fa3c3f>Note: </font> <font color=#217DAE>If selected count of questions more than exists in the database, then will be shown the maximum count of existing questions. It refer only Capitals play mode.</font>";
 }

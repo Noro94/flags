@@ -15,7 +15,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
+import dev.art.flags.Common.Common;
 import dev.art.flags.Model.CapitalsQuestion;
 import dev.art.flags.Model.Question;
 import dev.art.flags.Model.Ranking;
@@ -24,7 +26,7 @@ import static dev.art.flags.Utils.Utils.getCountByMode;
 
 public class DbHelper extends SQLiteOpenHelper {
 
-    private static String DB_NAME = "MyLocalDataBase.db";
+    private static String DB_NAME = "LocalDataBase_v2.db";
     private static String DB_PATH = "";
     private SQLiteDatabase mDataBase;
     private Context mContext = null;
@@ -33,7 +35,7 @@ public class DbHelper extends SQLiteOpenHelper {
         super(context, DB_NAME, null, 1);
 
         DB_PATH = context.getApplicationInfo().dataDir + "/databases/";
-        File file = new File(DB_PATH+"MyLocalDataBase.db");
+        File file = new File(DB_PATH+"LocalDataBase_v2.db");
         if(file.exists())
             openDataBase(); // Add this line to fix db.insert can't insert values
         this.mContext = context;
@@ -274,25 +276,25 @@ public class DbHelper extends SQLiteOpenHelper {
 
 
     //Insert Score to Ranking table
-    public void insertScore(double score) {
-        String query = "INSERT INTO Ranking(Score) VALUES("+score+")";
+    public void insertScore(double score, String mode) {
+        String query = "INSERT INTO Ranking(Score, Mode) VALUES("+score+", \"" + mode + "\")";
         mDataBase.execSQL(query);
     }
 
     //Get Score and sort ranking
-    public List<Ranking> getRanking() {
+    public List<Ranking> getRanking(String mode) {
         List<Ranking> listRanking = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c;
         try {
-            c = db.rawQuery("SELECT * FROM Ranking Order By Score DESC;", null);
+            c = db.rawQuery("SELECT * FROM Ranking WHERE Mode = \"" + mode + "\"  Order By Score DESC;", null);
             if (c == null) return null;
             c.moveToNext();
             do {
                 int Id = c.getInt(c.getColumnIndex("Id"));
                 double Score = c.getDouble(c.getColumnIndex("Score"));
 
-                Ranking ranking = new Ranking(Id, Score);
+                Ranking ranking = new Ranking(Id, Score, mode);
                 listRanking.add(ranking);
             } while (c.moveToNext());
             c.close();
@@ -306,7 +308,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
 
     //Update version 2.0
-    public int getPlayCount(int level)
+    public int getPlayCount(int level, String mode)
     {
         int result = 0;
         SQLiteDatabase db = this.getReadableDatabase();
@@ -316,7 +318,12 @@ public class DbHelper extends SQLiteOpenHelper {
             if(c == null) return 0;
             c.moveToNext();
             do{
-                result  = c.getInt(c.getColumnIndex("PlayCount"));
+                if (Objects.equals(mode, Common.RATE_MODE.F.toString())) {
+                    result  = c.getInt(c.getColumnIndex("PlayCount"));
+                } else {
+                    result  = c.getInt(c.getColumnIndex("PlayCountCapitals"));
+                }
+
             }while(c.moveToNext());
             c.close();
         }catch (Exception ex)
@@ -329,6 +336,12 @@ public class DbHelper extends SQLiteOpenHelper {
     public void updatePlayCount(int level,int playCount)
     {
         String query = String.format("UPDATE UserPlayCount Set PlayCount = %d WHERE Level = %d",playCount,level);
+        mDataBase.execSQL(query);
+    }
+
+    public void updatePlayCountCapitals(int level,int playCountCapitals)
+    {
+        String query = String.format("UPDATE UserPlayCount Set PlayCountCapitals = %d WHERE Level = %d",playCountCapitals,level);
         mDataBase.execSQL(query);
     }
 

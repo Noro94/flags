@@ -33,6 +33,7 @@ public class PlayingClassic extends PlayCommon implements View.OnClickListener {
         setContentView(R.layout.activity_playing);
 
         playType = Common.PLAY.FLAGS.toString();
+        modeOfRate = Common.RATE_MODE.F.toString();
 
         db = new DbHelper(this);
         configs = db.getConfigs();

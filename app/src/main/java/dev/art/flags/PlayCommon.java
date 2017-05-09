@@ -55,6 +55,7 @@ public abstract class PlayCommon extends AppCompatActivity {
     String speed = Common.SPEED.SLOW.toString();
     String activeClassName = "";
     String whereStatement = "";
+    String modeOfRate = "";
 
     ProgressBar progressBar;
     TextView txtScore, txtQuestion;
@@ -166,6 +167,7 @@ public abstract class PlayCommon extends AppCompatActivity {
         dataSend.putInt("TOTAL", totalQuestion);
         dataSend.putInt("CORRECT", correctAnswer);
         dataSend.putString("ACTIVE", activeClassName);
+        dataSend.putString("RATE_MODE", modeOfRate);
         intent.putExtras(dataSend);
         startActivity(intent);
         finish();

@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import java.io.IOException;
 
+import dev.art.flags.Common.Common;
 import dev.art.flags.DbHelper.DbHelper;
 
 import static dev.art.flags.constants.Constants.EMPTY_SCORES;
@@ -59,11 +60,17 @@ public class MainActivity extends AppCompatActivity {
         btnScore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (db.getRanking().size() > 0) {
+                if (db.getRanking(Common.RATE_MODE.F.toString()).size() > 0) {
                     Intent intent = new Intent(getApplicationContext(), Score.class);
+                    intent.putExtra("PLAY_MODE_FOR_SCORES", Common.RATE_MODE.F.toString());
                     startActivity(intent);
                     finish();
-                } else {
+                } else if (db.getRanking(Common.RATE_MODE.C.toString()).size() > 0) {
+                    Intent intent = new Intent(getApplicationContext(), Score.class);
+                    intent.putExtra("PLAY_MODE_FOR_SCORES", Common.RATE_MODE.C.toString());
+                    startActivity(intent);
+                    finish();
+                } else  {
                     showMessage(getApplicationContext(), EMPTY_SCORES);
                 }
             }

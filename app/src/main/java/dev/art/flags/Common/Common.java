@@ -29,4 +29,9 @@ public class Common {
         FLAGS,
         CAPITALS
     }
+
+    public enum RATE_MODE {
+        C,
+        F
+    }
 }

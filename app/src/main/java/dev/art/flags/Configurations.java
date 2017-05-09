@@ -3,6 +3,7 @@ package dev.art.flags;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
@@ -15,6 +16,7 @@ import dev.art.flags.constants.Constants;
 import static dev.art.flags.Utils.Utils.getCountByMode;
 import static dev.art.flags.Utils.Utils.getSecondsByMode;
 import static dev.art.flags.Utils.Utils.showMessage;
+import static dev.art.flags.constants.Constants.NOTE;
 
 public class Configurations extends AppCompatActivity {
 
@@ -23,7 +25,7 @@ public class Configurations extends AppCompatActivity {
     String speed = "";
 
     SeekBar seekBarCount, seekBarSpeed;
-    TextView txtCountMode, txtSpeedMode;
+    TextView txtCountMode, txtSpeedMode, note;
     Button resetScores;
 
     @Override
@@ -51,6 +53,10 @@ public class Configurations extends AppCompatActivity {
 
         applySeekBarSpeedChange(speed, false);
         seekBarSpeed.setProgress(Constants.LIST_OF_SECONDS.indexOf(getSecondsByMode(speed)));
+
+        //Note
+        note = (TextView) findViewById(R.id.note);
+        note.setText(Html.fromHtml(NOTE));
 
 
         //Event for count

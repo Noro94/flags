@@ -35,6 +35,7 @@ public class PlayingRevert extends PlayCommon implements View.OnClickListener {
         setContentView(R.layout.activity_playing_revert);
 
         playType = Common.PLAY.FLAGS.toString();
+        modeOfRate = Common.RATE_MODE.F.toString();
 
         db = new DbHelper(this);
         configs = db.getConfigs();

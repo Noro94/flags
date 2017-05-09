@@ -11,9 +11,11 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static dev.art.flags.Utils.Utils.getActiveClass;
 
+import dev.art.flags.Common.Common;
 import dev.art.flags.DbHelper.DbHelper;
 import dev.art.flags.Model.Ranking;
 import dev.art.flags.constants.Constants;
@@ -25,6 +27,8 @@ public class Done extends AppCompatActivity {
     ProgressBar progressBarResult;
     ImageView medalImageView;
     String previousActivity = "";
+    String modeOfRate = "";
+    DbHelper db;
 
     List scores = new ArrayList();
 
@@ -33,7 +37,7 @@ public class Done extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_done);
 
-        DbHelper db = new DbHelper(this);
+        db = new DbHelper(this);
 
 
         txtResultScore = (TextView) findViewById(R.id.txtTotalScore);
@@ -45,36 +49,34 @@ public class Done extends AppCompatActivity {
 
         Bundle extra = getIntent().getExtras();
         if (extra != null) {
-            int score = extra.getInt("SCORE");
+            int score;
+            if (extra.getInt("SCORE") == 0) {
+                score = 1;
+            } else {
+                score = extra.getInt("SCORE");
+            }
             int totalQuestion = extra.getInt("TOTAL");
             int correctAnswer = extra.getInt("CORRECT");
+            modeOfRate = extra.getString("RATE_MODE");
             previousActivity = extra.getString("ACTIVE");
 
             //Update 2.0
             int playCount = 0;
             if(totalQuestion == Constants.EASY_MODE_NUM) // EASY MODE
             {
-                playCount = db.getPlayCount(0);
-                playCount++;
-                db.updatePlayCount(0,playCount); // Set PlayCount ++
+                playCount = updatePlayCount(0, modeOfRate);
             }
             else if(totalQuestion == Constants.MEDIUM_MODE_NUM) // MEDIUM MODE
             {
-                playCount = db.getPlayCount(1);
-                playCount++;
-                db.updatePlayCount(1,playCount); // Set PlayCount ++
+                playCount = updatePlayCount(1, modeOfRate);
             }
             else if(totalQuestion == Constants.HARD_MODE_NUM) // HARD MODE
             {
-                playCount = db.getPlayCount(2);
-                playCount++;
-                db.updatePlayCount(2,playCount); // Set PlayCount ++
+                playCount = updatePlayCount(2, modeOfRate);
             }
             else if(totalQuestion == Constants.HARDEST_MODE_NUM) // HARDEST MODE
             {
-                playCount = db.getPlayCount(3);
-                playCount++;
-                db.updatePlayCount(3,playCount); // Set PlayCount ++
+                playCount = updatePlayCount(3, modeOfRate);
             }
 
             double subtract = ((5.0/(float)score)*100)*(playCount-1); //-1 because we playCount++ before we calculate result
@@ -87,8 +89,8 @@ public class Done extends AppCompatActivity {
             progressBarResult.setProgress(correctAnswer);
 
             //save score
-            db.insertScore(finalScore);
-            List<Ranking> lstRanking = db.getRanking();
+            db.insertScore(finalScore, modeOfRate);
+            List<Ranking> lstRanking = db.getRanking(modeOfRate);
 
             for (Ranking rank : lstRanking) {
                 scores.add(rank.getScore());
@@ -123,10 +125,31 @@ public class Done extends AppCompatActivity {
         });
     }
 
+    private int updatePlayCount(int level, String modeOfRate) {
+        int playCount = db.getPlayCount(level, modeOfRate);
+        playCount++;
+
+        if (Objects.equals(modeOfRate, Common.RATE_MODE.F.toString())) {
+            db.updatePlayCount(level, playCount); // Set PlayCount ++
+        } else {
+            db.updatePlayCountCapitals(level, playCount); // Set PlayCount ++
+        }
+
+        return playCount;
+    }
+
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(getApplicationContext(), ModeOption.class);
+        Intent intent = new Intent(getApplicationContext(), getModeOptionClassByMode(modeOfRate));
         startActivity(intent);
         finish();
+    }
+
+    public static Class getModeOptionClassByMode(String mode) {
+        if (Objects.equals(mode, Common.RATE_MODE.F.toString())) {
+            return ModeOption.class;
+        } else {
+            return CapitalsModeOption.class;
+        }
     }
 }

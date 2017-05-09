@@ -3,10 +3,12 @@ package dev.art.flags.Model;
 public class Ranking {
     private int Id;
     private double Score;
+    private String Mode;
 
-    public Ranking(int id, double score) {
+    public Ranking(int id, double score, String mode) {
         Id = id;
         Score = score;
+        Mode = mode;
     }
 
     public int getId() {
@@ -23,5 +25,13 @@ public class Ranking {
 
     public void setScore(double score) {
         Score = score;
+    }
+
+    public String getMode() {
+        return Mode;
+    }
+
+    public void setMode(String mode) {
+        Mode = mode;
     }
 }

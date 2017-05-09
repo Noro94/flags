@@ -8,24 +8,90 @@
     tools:context="dev.art.flags.MainActivity">
 
 
-    <TextView
+    <ImageView
         android:id="@+id/txtTitle"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:text="BEST SCORES"
-        android:textColor="#ffffff"
-        android:textSize="24sp"
-        android:textStyle="bold"/>
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/best_scores"/>
+
+    <LinearLayout
+        android:id="@+id/scoreButtons"
+        android:layout_below="@+id/txtTitle"
+        android:weightSum="2"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/ScoresLayoutFlag"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="40dp"
+            android:background="#216aae">
+
+            <Button
+                android:id="@+id/flagScores"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:background="@color/backgroundPage"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:text="Two Flags Mode"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:theme="@style/MyButton"  />
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:id="@+id/ScoresLayoutCapital"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="10dp"
+            android:background="#52bec0">
+
+            <Button
+                android:id="@+id/capitalScores"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:background="@color/backgroundPage"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:text="Capitals Mode"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:theme="@style/MyButton"  />
+        </LinearLayout>
+
+    </LinearLayout>
+
 
 
     <RelativeLayout
         android:id="@+id/scoreList"
-        android:layout_marginTop="70dp"
+        android:layout_below="@+id/scoreButtons"
+        android:layout_marginTop="15dp"
         android:layout_marginBottom="30dp"
-        android:padding="20dp"
+        android:paddingTop="5dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="15dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:background="@drawable/round_corner"
@@ -35,10 +101,9 @@
 
         <ListView
             android:id="@+id/lstRanking"
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"></ListView>
+            android:layout_alignParentEnd="true"/>
 
 
     </RelativeLayout>

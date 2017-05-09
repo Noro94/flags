@@ -3,6 +3,7 @@ package dev.art.flags;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -25,6 +26,8 @@ public class PlayingCapitals extends PlayCommon implements View.OnClickListener 
     TextView countryName;
     Button btnA, btnB, btnC, btnD;
     List<Button> buttonList;
+    LinearLayout questionLayout;
+    String layoutImageName = "map_transparent";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +35,12 @@ public class PlayingCapitals extends PlayCommon implements View.OnClickListener 
         setContentView(R.layout.activity_playing_capitals);
 
         playType = Common.PLAY.CAPITALS.toString();
+        modeOfRate = Common.RATE_MODE.C.toString();
 
         Bundle extra = getIntent().getExtras();
         if (extra != null) {
             whereStatement = makeCapitalsWhereStatement(extra.getString("CONTINENT"));
+            layoutImageName = extra.getString("CONTINENT");
         }
 
         db = new DbHelper(this);
@@ -45,6 +50,11 @@ public class PlayingCapitals extends PlayCommon implements View.OnClickListener 
 
         setTimeoutAndInterval(speed);
         rightAnswerScore = SpeedToScore(speed);
+
+        questionLayout = (LinearLayout) findViewById(R.id.question_capitals);
+
+        int ImageId = this.getResources().getIdentifier(layoutImageName.toLowerCase(), "drawable", getPackageName());
+        questionLayout.setBackgroundResource(ImageId);
 
         txtScore = (TextView) findViewById(R.id.txtScore);
         txtQuestion = (TextView) findViewById(R.id.txtQuestion);

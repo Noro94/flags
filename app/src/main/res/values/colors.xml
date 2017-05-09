@@ -6,7 +6,9 @@
     <color name="backgroundPage">#242E38</color>
     <color name="colorWrong">#fc2024</color>
     <color name="colorRight">#1cd400</color>
-    <color name="colorButtonDefault">#217DAE</color>
+    <color name="colorButtonDefault">#217dae</color>
     <color name="colorBackgroundDefault">#efefef</color>
     <color name="colorBackgroundViewFlag">#cfcfcf</color>
+    <color name="colorClickedScoreBtn">#216aae</color>
+    <color name="colorUnClickedScoreBtn">#52bec0</color>
 </resources>

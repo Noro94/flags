@@ -7,18 +7,17 @@
     android:background="@color/backgroundPage"
     tools:context="dev.art.flags.CapitalsModeOption">
 
-    <TextView
+    <ImageView
         android:id="@+id/modeOption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:layout_marginTop="25dp"
-        android:text="CHOSE CONTINENT"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/choose_continent"/>
 
     <RelativeLayout
         android:layout_marginLeft="30dp"
@@ -29,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/modeOption"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp">
+        android:layout_marginTop="15dp">
 
         <LinearLayout
             android:layout_width="match_parent"
